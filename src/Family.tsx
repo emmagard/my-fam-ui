@@ -1,11 +1,20 @@
-import { useGetIndividual } from './api/individuals';
-import Tree from './Tree';
+import type { Individual } from './types';
+import TreeNode from './TreeNode';
 
-const Family = ({id}:{id: string}) => {
-  const { data } = useGetIndividual({id});
+const Family = ({rootPerson} : {rootPerson: Individual}) => {
+if (!rootPerson) return null;
 
   return (
-   <Tree data={[data]} />
+    <div className="family-tree">
+      <TreeNode 
+        person={rootPerson} 
+        visited={new Set()} 
+        showParents={true}
+        showChildren={true}
+        showSiblings={true}
+        showSpouses={true}
+      />
+    </div>
   );
 };
 

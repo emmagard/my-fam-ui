@@ -1,18 +1,20 @@
+import React, { useState, useEffect, useContext } from "react";
+import { GlobalContext } from "./features/global-context";
 import TreeNode from "./TreeNode";
+import type { Individual } from './types';
 
-const Tree = ({data}) => {
+const Tree = ({data}:{data: Individual[]}) => {
   if (!data) {
     return null;
   }
-
-  const dataArr = data;
-
+  
   return (
     <ul>
-      {dataArr.map((node) => { 
-        return (
-          <TreeNode key={`${node?.name}-${node?.id}`} node={node} />
-        )
+      {data.map((node) => {
+        
+          return (
+            <TreeNode key={`${node?.name}-${node?.id}`} node={node} />
+          );
       })}
     </ul>
   );

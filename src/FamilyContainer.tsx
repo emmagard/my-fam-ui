@@ -1,9 +1,9 @@
 
-import { useGetIndividual } from './api/individuals';
+import { useGetFamilyTree } from './api/individuals';
 import Family from './Family';
 
 const FamilyContainer = () => {
-  const { data } = useGetIndividual({ id: '1' });
+  const { data } = useGetFamilyTree('1');
 
   if (!data) {
     return null;

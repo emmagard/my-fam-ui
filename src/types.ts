@@ -13,3 +13,9 @@ export type Relationship = {
   id: string;
   value: string;
 };
+
+export type GlobalContextType = {
+  familyId: string;
+  rootIndividual: Individual | null;
+  setRootIndividual: React.Dispatch<React.SetStateAction<Individual | null>>;
+};

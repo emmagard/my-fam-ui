@@ -1,5 +1,5 @@
 import type { Individual } from './types';
-import TreeNode from './TreeNode';
+import TreeNode from './features/tree-node/TreeNode';
 
 const Family = ({rootPerson} : {rootPerson: Individual}) => {
 if (!rootPerson) return null;

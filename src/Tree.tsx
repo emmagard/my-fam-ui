@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "./features/global-context";
-import TreeNode from "./TreeNode";
+import TreeNode from "./features/tree-node/TreeNode";
 import type { Individual } from './types';
 
 const Tree = ({data}:{data: Individual[]}) => {

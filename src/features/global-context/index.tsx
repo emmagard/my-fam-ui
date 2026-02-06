@@ -1,17 +1,14 @@
 import React, { createContext, useState } from 'react';
-import type { Individual } from '../../types';
+import type { GlobalContextType, Individual } from '../../types';
 
-const GlobalContext = createContext({});
+const GlobalContext = createContext({} as GlobalContextType);
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const familyId: string = '1'; // root individual id
-  const [rootIndividual, setRootIndividual] = useState<Individual | null>(null);
-  const [globalIds, setGlobalIds] = useState(new Set());
-
-  
+  const [rootIndividual, setRootIndividual] = useState<Individual | null>(null);  
 
   return (
-    <GlobalContext.Provider value={{ globalIds, setGlobalIds, familyId, setRootIndividual, rootIndividual }}>
+    <GlobalContext.Provider value={{familyId, setRootIndividual, rootIndividual }}>
       {children}
     </GlobalContext.Provider>
   );

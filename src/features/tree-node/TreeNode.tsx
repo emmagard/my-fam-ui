@@ -1,18 +1,29 @@
-import type { Individual } from './types';
+import type { Individual } from '../../types';
 import TreeNodeRelation from './TreeNodeRelation';
 
-const TreeNode = ({ person, visited, showParents, showChildren, showSiblings, showSpouses, showBorder = true }: { person: Individual, visited: Set<string>, showParents: boolean, showChildren: boolean, showSiblings: boolean, showSpouses: boolean, showBorder?: boolean }) => {
+const TreeNode = ({
+  person,
+  visited,
+  showParents,
+  showChildren,
+  showSiblings,
+  showSpouses,
+  showBorder = true
+}: {
+  person: Individual,
+  visited: Set<string>,
+  showParents: boolean,
+  showChildren: boolean,
+  showSiblings: boolean,
+  showSpouses: boolean,
+  showBorder?: boolean
+}) => {
   if (!person) return null;
 
   // If already rendered, show reference
   if (visited.has(person?.id)) {
-    return (
-      <div className="tree-node duplicate">
-        <div className="person-card reference">
-          {person?.name} (see above)
-        </div>
-      </div>
-    );
+    console.warn(`Already visited ${person?.name}, skipping to prevent duplicate render.`);
+    return null;
   }
 
   // Mark as visited
@@ -20,7 +31,7 @@ const TreeNode = ({ person, visited, showParents, showChildren, showSiblings, sh
   newVisited.add(person?.id);
 
   return (
-    <div className="tree-node">
+    <div className="tree-node mr-2">
       {showParents && <TreeNodeRelation type="parents" persons={person?.relationships?.parents} newVisited={newVisited} />}
 
       <div className="flex flex-row">

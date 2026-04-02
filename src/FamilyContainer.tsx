@@ -1,6 +1,7 @@
 
 import { useGetFamilyTree } from './api/individuals';
-import Family from './Family';
+import FamilyTree from './Family';
+import { GlobalProvider } from './features/global-context';
 
 const FamilyContainer = () => {
   const { data } = useGetFamilyTree('1');
@@ -10,9 +11,11 @@ const FamilyContainer = () => {
   }
 
   return (
-    <div className="family-container">
-       { data && <Family rootPerson={data} /> }
-    </div>
+    <GlobalProvider>
+      <div className="family-container">
+        { data && <FamilyTree data={data} /> }
+      </div>
+    </GlobalProvider>
   );
 };
 
